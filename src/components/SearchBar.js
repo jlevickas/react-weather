@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const API_KEY = "80b87101d09e6680b800cc06104464b5";
+const API_KEY = `${process.env.REACT_APP_API_KEY}`;
 
 const SearchBar = () => {
   const [query, setQuery] = useState("");
