@@ -1,6 +1,9 @@
 .footer {
   display: flex;
-  background-color: rgb(189, 176, 176);
+  align-items: center;
+  justify-content: space-around;
+  background-color: rgb(118, 122, 160);
+  color: rgb(255, 255, 255);
   height: 100px;
   width: 100%;
   position: absolute;

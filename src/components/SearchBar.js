@@ -9,32 +9,13 @@ import {
 } from "@mui/material/";
 import { Search } from "@mui/icons-material";
 import "../styles/SearchBar.css";
+import { Link } from "react-router-dom";
 
 const API_KEY = `${process.env.REACT_APP_API_KEY}`;
 
-const SearchBar = () => {
+const SearchBar = ({ city, setData, setCity }) => {
   const [query, setQuery] = useState("");
-  const [data, setData] = useState([]);
   const [cityList, setCityList] = useState([]);
-  const [city, setCity] = useState("");
-
-  useEffect(() => {
-    const fetchData = async () => {
-      if (city !== "") {
-        try {
-          console.log(city);
-          const result = await axios.get(
-            `https://api.openweathermap.org/data/2.5/onecall?lat=${city.lat}&lon=${city.lon}&exclude=hourly,daily&units=metric&appid=${API_KEY}`
-          );
-          setData(result.data);
-          console.log(result.data);
-        } catch (err) {
-          return;
-        }
-      }
-    };
-    fetchData();
-  }, [city]);
 
   useEffect(() => {
     const getCity = async () => {
@@ -62,20 +43,23 @@ const SearchBar = () => {
 
   const listSuggestions = () => {
     return (
-      <List className="resultList">
+      <List className="result-list">
         {cityList.map((value, index) => {
+          let cityURI = encodeURIComponent(value.name);
           return (
-            <ListItem
-              key={index}
-              button
-              color="primary"
-              onClick={() => {
-                setCity(value);
-                setCityList([]);
-              }}
-            >
-              <ListItemText primary={`${value.name}, ${value.country}`} />
-            </ListItem>
+            <Link to={`/${cityURI}`} className="suggestion-link">
+              <ListItem
+                key={index}
+                button
+                color="primary"
+                onClick={() => {
+                  setCity(value);
+                  setCityList([]);
+                }}
+              >
+                <ListItemText primary={`${value.name}, ${value.country}`} />
+              </ListItem>
+            </Link>
           );
         })}
       </List>
@@ -83,9 +67,9 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="barContainer">
+    <div className="bar-container">
       <Input
-        className="searchBar"
+        className="search-bar"
         autoFocus
         color="primary"
         placeholder="Your city"
