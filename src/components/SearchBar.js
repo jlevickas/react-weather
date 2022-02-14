@@ -1,5 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import {
+  Input,
+  InputAdornment,
+  ListItem,
+  ListItemText,
+  List,
+} from "@mui/material/";
+import { Search } from "@mui/icons-material";
+import "../styles/SearchBar.css";
 
 const API_KEY = `${process.env.REACT_APP_API_KEY}`;
 
@@ -30,10 +39,10 @@ const SearchBar = () => {
   useEffect(() => {
     const getCity = async () => {
       if (query !== "") {
-        const getCoords = await axios.get(
+        const getCities = await axios.get(
           `http://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=5&appid=${API_KEY}`
         );
-        setCityList(getCoords.data);
+        setCityList(getCities.data);
       }
     };
     getCity();
@@ -44,34 +53,50 @@ const SearchBar = () => {
     if (!e.target.value) {
       setCityList([]);
     }
+
     clearTimeout(timer);
     timer = setTimeout(() => {
       setQuery(e.target.value);
     }, 1000);
   };
 
-  return (
-    <div className="container">
-      <div className="searchBar">
-        <input type="text" placeholder="Your city" onKeyUp={handleSubmit} />
-      </div>
-      <div className="results">
-        {cityList?.map((value, key) => {
+  const listSuggestions = () => {
+    return (
+      <List className="resultList">
+        {cityList.map((value, index) => {
           return (
-            <button
-              key={key}
-              className="dataItem"
-              onClick={(e) => {
+            <ListItem
+              key={index}
+              button
+              color="primary"
+              onClick={() => {
                 setCity(value);
+                setCityList([]);
               }}
             >
-              <p>
-                {value.name}, {value.country}
-              </p>
-            </button>
+              <ListItemText primary={`${value.name}, ${value.country}`} />
+            </ListItem>
           );
         })}
-      </div>
+      </List>
+    );
+  };
+
+  return (
+    <div className="barContainer">
+      <Input
+        className="searchBar"
+        autoFocus
+        color="primary"
+        placeholder="Your city"
+        onKeyUp={handleSubmit}
+        endAdornment={
+          <InputAdornment position="end">
+            <Search />
+          </InputAdornment>
+        }
+      />
+      {cityList.length > 0 ? listSuggestions() : <></>}
     </div>
   );
 };
