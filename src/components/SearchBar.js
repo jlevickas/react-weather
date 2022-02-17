@@ -47,9 +47,8 @@ const SearchBar = ({ city, setData, setCity }) => {
         {cityList.map((value, index) => {
           let cityURI = encodeURIComponent(value.name);
           return (
-            <Link to={`/${cityURI}`} className="suggestion-link">
+            <Link key={index} to={`/${cityURI}`} className="suggestion-link">
               <ListItem
-                key={index}
                 button
                 color="primary"
                 onClick={() => {

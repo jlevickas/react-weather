@@ -15,9 +15,10 @@
 }
 
 .App {
+  display: grid;
   width: 100%;
   max-width: 900px;
-  height: 88vh;
+  height: 90vh;
   margin: 0 auto;
   box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.05);
   position: relative;

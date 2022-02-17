@@ -1,0 +1,11 @@
+.main-city-data {
+  color: rgb(0, 140, 255);
+  position: absolute;
+  top: 5em;
+  width: 60%;
+}
+.weather-icon {
+  position: absolute;
+  left: 3.2em;
+  top: 1px;
+}
