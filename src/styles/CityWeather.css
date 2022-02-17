@@ -1,11 +1,34 @@
-.main-city-data {
+.weather-data {
   color: rgb(0, 140, 255);
-  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  width: 100%;
+  gap: 25px;
+  align-items: center;
+}
+.main-city-data {
+  grid-column: 1 / 6;
+  grid-row: 2;
+  height: 15em;
+  padding-left: 40px;
+  /* position: absolute;
   top: 5em;
-  width: 60%;
+  width: 60%; */
 }
 .weather-icon {
-  position: absolute;
-  left: 3.2em;
-  top: 1px;
+  grid-column: 6 / 9;
+  grid-row: 2/3;
+  justify-self: center;
+  align-self: flex-start;
+}
+.weather-description {
+  grid-column: 6/9;
+  justify-self: center;
+  align-self: flex-end;
+  grid-row: 2/3;
+}
+
+.weather-description::first-letter {
+  text-transform: capitalize;
 }

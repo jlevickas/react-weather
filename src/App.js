@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import React, { useState } from "react";
 
 function App() {
-  const [city, setCity] = useState("");
+  const [city, setCity] = useState();
 
   return (
     <Router>
@@ -16,7 +16,10 @@ function App() {
           <SearchBar city={city} setCity={setCity} />
           <Routes>
             <Route path="/" element={<StartPage />} />
-            <Route path="/:city" element={<CityWeather city={city} />} />
+            <Route
+              path="/:city"
+              element={<CityWeather city={city} setCity={setCity} />}
+            />
           </Routes>
           <Footer />
         </div>

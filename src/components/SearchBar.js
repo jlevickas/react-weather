@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 
 const API_KEY = `${process.env.REACT_APP_API_KEY}`;
 
-const SearchBar = ({ city, setData, setCity }) => {
+const SearchBar = ({ setCity }) => {
   const [query, setQuery] = useState("");
   const [cityList, setCityList] = useState([]);
 
@@ -24,6 +24,10 @@ const SearchBar = ({ city, setData, setCity }) => {
           `http://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=5&appid=${API_KEY}`
         );
         setCityList(getCities.data);
+      } else {
+        const path = window.location.pathname;
+        console.log(path);
+        setQuery(path);
       }
     };
     getCity();

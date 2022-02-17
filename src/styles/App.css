@@ -15,7 +15,7 @@
 }
 
 .App {
-  display: grid;
+  display: flex;
   width: 100%;
   max-width: 900px;
   height: 90vh;
