@@ -4,8 +4,7 @@
   justify-content: space-around;
   background-color: rgb(118, 122, 160);
   color: rgb(255, 255, 255);
-  height: 100px;
   width: 100%;
-  position: absolute;
-  bottom: 1px;
+  grid-row: -2 / -1;
+  grid-column: 1 / -1;
 }

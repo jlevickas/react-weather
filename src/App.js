@@ -5,6 +5,7 @@ import StartPage from "./pages/StartPage";
 import CityWeather from "./pages/CityWeather";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import React, { useState } from "react";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 function App() {
   const [city, setCity] = useState();

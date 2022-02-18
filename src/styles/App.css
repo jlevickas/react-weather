@@ -15,7 +15,10 @@
 }
 
 .App {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(12, 1fr);
+  gap: 10px;
   width: 100%;
   max-width: 900px;
   height: 90vh;
